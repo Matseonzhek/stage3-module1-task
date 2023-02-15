@@ -6,7 +6,6 @@ application  {
     mainClass = 'Main'
 }
 
-version 'all'
 repositories {
     mavenCentral()
 }
