@@ -5,10 +5,10 @@ import com.mjc.school.repository.entity.News;
 import java.util.List;
 
 public interface Connecting {
-    News readFromDataBase(Long id);
+    News readById(Long id);
     List<News> readAllNews();
-    boolean delete(Long id);
-    void saveToDataBase(News news);
+    Boolean delete(Long id);
+    void createAndUpdateDataBase(News news);
 
     List<News> getDataSource();
 

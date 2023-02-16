@@ -49,7 +49,7 @@ public class Model implements Connecting {
     }
 
     @Override
-    public News readFromDataBase(Long id) {
+    public News readById(Long id) {
         return dataSource.stream()
                 .filter(news -> news.getId() == id)
                 .findFirst()
@@ -63,13 +63,13 @@ public class Model implements Connecting {
 
 
     @Override
-    public boolean delete(Long id) {
-        News deletedElement = readFromDataBase(id);
+    public Boolean delete(Long id) {
+        News deletedElement = readById(id);
         return dataSource.remove(deletedElement);
     }
 
     @Override
-    public void saveToDataBase(News news) {
+    public void createAndUpdateDataBase(News news) {
         dataSource.add(news);
     }
 

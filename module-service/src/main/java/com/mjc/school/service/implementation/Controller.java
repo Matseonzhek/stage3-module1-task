@@ -29,7 +29,7 @@ public class Controller implements Controlling {
         }
         validate(newsDTO);
         News news = NewsMapper.INSTANCE.newsDTOToNews(newsDTO);
-        model.saveToDataBase(news);
+        model.createAndUpdateDataBase(news);
         return newsDTO;
     }
 
@@ -38,7 +38,7 @@ public class Controller implements Controlling {
         if (id == null) {
             return null;
         }
-        News news = model.readFromDataBase(id);
+        News news = model.readById(id);
         NewsDTO newsDTO = view.getNewsDTO(scanner);
         validate(newsDTO);
         news.setTitle(newsDTO.getTitle());
@@ -52,7 +52,7 @@ public class Controller implements Controlling {
         if (id == null) {
             return null;
         }
-        return NewsMapper.INSTANCE.newsToNewsDTO(model.readFromDataBase(id));
+        return NewsMapper.INSTANCE.newsToNewsDTO(model.readById(id));
     }
 
     @Override
