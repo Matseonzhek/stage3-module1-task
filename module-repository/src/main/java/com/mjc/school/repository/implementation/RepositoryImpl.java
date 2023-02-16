@@ -1,6 +1,6 @@
 package com.mjc.school.repository.implementation;
 
-import com.mjc.school.repository.interfaces.Connecting;
+import com.mjc.school.repository.interfaces.Repository;
 import com.mjc.school.repository.entity.News;
 
 import java.io.BufferedReader;
@@ -11,16 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Model implements Connecting {
-    private static Model instance;
+public class RepositoryImpl implements Repository {
+    private static RepositoryImpl instance;
     private static List<News> dataSource;
-    private Model() {
+    private RepositoryImpl() {
     }
 
-    public static Model getInstance() {
+    public static RepositoryImpl getInstance() {
         if (instance == null) {
-            instance = new Model();
-            dataSource = Model.readFromFile();
+            instance = new RepositoryImpl();
+            dataSource = RepositoryImpl.readFromFile();
         }
         return instance;
     }
@@ -29,7 +29,7 @@ public class Model implements Connecting {
         List<News> news = new ArrayList<>();
 
 
-        try (InputStreamReader inputStream = new InputStreamReader(Objects.requireNonNull(Model.class.getClassLoader().getResourceAsStream("content.txt")));
+        try (InputStreamReader inputStream = new InputStreamReader(Objects.requireNonNull(RepositoryImpl.class.getClassLoader().getResourceAsStream("content.txt")));
              BufferedReader bufferedReader = new BufferedReader(inputStream);
         ) {
             String line;

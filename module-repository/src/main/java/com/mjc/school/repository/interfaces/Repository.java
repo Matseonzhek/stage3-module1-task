@@ -4,7 +4,7 @@ import com.mjc.school.repository.entity.News;
 
 import java.util.List;
 
-public interface Connecting {
+public interface Repository {
     News readById(Long id);
     List<News> readAllNews();
     Boolean delete(Long id);

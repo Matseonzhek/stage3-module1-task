@@ -2,7 +2,7 @@ package com.mjc.school.service.implementation;
 
 import com.mjc.school.controller.entity.NewsDTO;
 import com.mjc.school.controller.interfaces.Viewing;
-import com.mjc.school.repository.interfaces.Connecting;
+import com.mjc.school.repository.interfaces.Repository;
 import com.mjc.school.repository.entity.News;
 import com.mjc.school.service.interfaces.Controlling;
 import com.mjc.school.service.interfaces.NewsMapper;
@@ -15,9 +15,9 @@ import java.util.Scanner;
 public class Controller implements Controlling {
 
     private final Viewing view;
-    private final Connecting model;
+    private final Repository model;
 
-    public Controller(Viewing view, Connecting model) {
+    public Controller(Viewing view, Repository model) {
         this.view = view;
         this.model = model;
     }
