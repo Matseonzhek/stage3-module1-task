@@ -1,3 +1,5 @@
+package com.mjc.school.repository.entity;
+
 import java.util.Objects;
 
 public class Author {

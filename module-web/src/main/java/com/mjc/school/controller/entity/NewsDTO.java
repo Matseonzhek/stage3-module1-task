@@ -1,3 +1,5 @@
+package com.mjc.school.controller.entity;
+
 import java.util.Objects;
 
 public class NewsDTO {

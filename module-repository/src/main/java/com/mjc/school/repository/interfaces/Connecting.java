@@ -1,3 +1,7 @@
+package com.mjc.school.repository.interfaces;
+
+import com.mjc.school.repository.entity.News;
+
 import java.util.List;
 
 public interface Connecting {

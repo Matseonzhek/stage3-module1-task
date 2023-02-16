@@ -1,3 +1,5 @@
+package com.mjc.school.repository.entity;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 

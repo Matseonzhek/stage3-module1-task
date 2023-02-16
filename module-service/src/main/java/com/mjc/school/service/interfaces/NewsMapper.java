@@ -1,3 +1,7 @@
+package com.mjc.school.service.interfaces;
+
+import com.mjc.school.controller.entity.NewsDTO;
+import com.mjc.school.repository.entity.News;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

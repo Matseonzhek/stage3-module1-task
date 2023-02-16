@@ -1,3 +1,7 @@
+package com.mjc.school.controller.interfaces;
+
+import com.mjc.school.controller.entity.NewsDTO;
+
 import java.util.List;
 import java.util.Scanner;
 

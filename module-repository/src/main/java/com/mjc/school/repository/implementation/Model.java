@@ -1,3 +1,8 @@
+package com.mjc.school.repository.implementation;
+
+import com.mjc.school.repository.interfaces.Connecting;
+import com.mjc.school.repository.entity.News;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

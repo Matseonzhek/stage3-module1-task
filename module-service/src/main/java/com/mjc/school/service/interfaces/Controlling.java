@@ -1,3 +1,8 @@
+package com.mjc.school.service.interfaces;
+
+import com.mjc.school.controller.entity.NewsDTO;
+import com.mjc.school.service.exceptions.NewsValidationException;
+
 import java.util.List;
 import java.util.Scanner;
 

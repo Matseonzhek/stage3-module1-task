@@ -1,3 +1,13 @@
+package com.mjc.school.service.implementation;
+
+import com.mjc.school.controller.entity.NewsDTO;
+import com.mjc.school.controller.interfaces.Viewing;
+import com.mjc.school.repository.interfaces.Connecting;
+import com.mjc.school.repository.entity.News;
+import com.mjc.school.service.interfaces.Controlling;
+import com.mjc.school.service.interfaces.NewsMapper;
+import com.mjc.school.service.exceptions.NewsValidationException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -67,11 +77,11 @@ public class Controller implements Controlling {
     @Override
     public void validate(NewsDTO newsDTO) throws NewsValidationException {
         if (!(newsDTO.getTitle().length() >= 5 && newsDTO.getTitle().length() <= 30)) {
-            throw new NewsValidationException("News was not updated, as length of the title is less of 5 or more than 30."
+            throw new NewsValidationException("com.mjc.school.repository.entity.News was not updated, as length of the title is less of 5 or more than 30."
                     + newsDTO.getTitle() + ": " + newsDTO.getTitle().length());
         }
         if (!(newsDTO.getContent().length() >= 5 && newsDTO.getContent().length() <= 255)) {
-            throw new NewsValidationException("News was not updated, as length of the content is less of 5 or more than 255 "
+            throw new NewsValidationException("com.mjc.school.repository.entity.News was not updated, as length of the content is less of 5 or more than 255 "
                     + newsDTO.getContent() + ": " + newsDTO.getContent().length());
         }
     }
