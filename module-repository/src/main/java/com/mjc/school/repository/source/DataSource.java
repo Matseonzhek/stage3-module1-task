@@ -1,6 +1,5 @@
-package com.mjc.school.repository.implementation;
+package com.mjc.school.repository.source;
 
-import com.mjc.school.repository.interfaces.Repository;
 import com.mjc.school.repository.entity.News;
 
 import java.io.BufferedReader;
@@ -11,16 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class RepositoryImpl implements Repository {
-    private static RepositoryImpl instance;
+public class DataSource {
+    private static DataSource instance;
     private static List<News> dataSource;
-    private RepositoryImpl() {
+    private DataSource() {
     }
 
-    public static RepositoryImpl getInstance() {
+    public static DataSource getInstance() {
         if (instance == null) {
-            instance = new RepositoryImpl();
-            dataSource = RepositoryImpl.readFromFile();
+            instance = new DataSource();
+            dataSource = DataSource.readFromFile();
         }
         return instance;
     }
@@ -29,7 +28,7 @@ public class RepositoryImpl implements Repository {
         List<News> news = new ArrayList<>();
 
 
-        try (InputStreamReader inputStream = new InputStreamReader(Objects.requireNonNull(RepositoryImpl.class.getClassLoader().getResourceAsStream("content.txt")));
+        try (InputStreamReader inputStream = new InputStreamReader(Objects.requireNonNull(DataSource.class.getClassLoader().getResourceAsStream("content.txt")));
              BufferedReader bufferedReader = new BufferedReader(inputStream);
         ) {
             String line;
@@ -48,33 +47,21 @@ public class RepositoryImpl implements Repository {
         return news;
     }
 
-    @Override
-    public News readById(Long id) {
-        return dataSource.stream()
-                .filter(news -> news.getId() == id)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("No data found"));
-    }
-
-    @Override
     public List<News> readAllNews() {
         return dataSource;
     }
 
 
-    @Override
-    public Boolean delete(Long id) {
-        News deletedElement = readById(id);
-        return dataSource.remove(deletedElement);
+    public Boolean removeNews(News news) {
+        return dataSource.remove(news);
     }
 
-    @Override
-    public void createAndUpdateDataBase(News news) {
+    public News addNews(News news) {
         dataSource.add(news);
+        return news;
     }
 
-    @Override
-    public  List<News> getDataSource() {
+    public static List<News> getDataSource() {
         return dataSource;
     }
 

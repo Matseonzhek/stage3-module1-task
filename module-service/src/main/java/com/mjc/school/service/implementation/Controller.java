@@ -2,7 +2,7 @@ package com.mjc.school.service.implementation;
 
 import com.mjc.school.controller.entity.NewsDTO;
 import com.mjc.school.controller.interfaces.Viewing;
-import com.mjc.school.repository.interfaces.Repository;
+import com.mjc.school.repository.interfaces.RepositoryInterface;
 import com.mjc.school.repository.entity.News;
 import com.mjc.school.service.interfaces.Controlling;
 import com.mjc.school.service.interfaces.NewsMapper;
@@ -15,9 +15,9 @@ import java.util.Scanner;
 public class Controller implements Controlling {
 
     private final Viewing view;
-    private final Repository model;
+    private final RepositoryInterface model;
 
-    public Controller(Viewing view, Repository model) {
+    public Controller(Viewing view, RepositoryInterface model) {
         this.view = view;
         this.model = model;
     }
@@ -29,7 +29,7 @@ public class Controller implements Controlling {
         }
         validate(newsDTO);
         News news = NewsMapper.INSTANCE.newsDTOToNews(newsDTO);
-        model.createAndUpdateDataBase(news);
+        model.create(news);
         return newsDTO;
     }
 
@@ -38,7 +38,7 @@ public class Controller implements Controlling {
         if (id == null) {
             return null;
         }
-        News news = model.readById(id);
+        News news = (News) model.readById(id);
         NewsDTO newsDTO = view.getNewsDTO(scanner);
         validate(newsDTO);
         news.setTitle(newsDTO.getTitle());
@@ -52,7 +52,7 @@ public class Controller implements Controlling {
         if (id == null) {
             return null;
         }
-        return NewsMapper.INSTANCE.newsToNewsDTO(model.readById(id));
+        return NewsMapper.INSTANCE.newsToNewsDTO((News) model.readById(id));
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Controller implements Controlling {
 
     @Override
     public List<NewsDTO> getAllNews() {
-        List<News> newsList = model.readAllNews();
+        List<News> newsList = model.readAll();
         List<NewsDTO> newsDTOList = new ArrayList<>();
         for (News element : newsList) {
             NewsDTO newsDTO = NewsMapper.INSTANCE.newsToNewsDTO(element);

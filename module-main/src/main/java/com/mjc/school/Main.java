@@ -3,8 +3,9 @@ package com.mjc.school;
 import com.mjc.school.controller.entity.NewsDTO;
 import com.mjc.school.controller.implementation.View;
 import com.mjc.school.controller.interfaces.Viewing;
-import com.mjc.school.repository.interfaces.Repository;
-import com.mjc.school.repository.implementation.RepositoryImpl;
+import com.mjc.school.repository.implementation.Repository;
+import com.mjc.school.repository.interfaces.RepositoryInterface;
+import com.mjc.school.repository.source.DataSource;
 import com.mjc.school.service.implementation.Controller;
 import com.mjc.school.service.interfaces.Controlling;
 import com.mjc.school.service.exceptions.NewsValidationException;
@@ -14,7 +15,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Viewing view = new View();
-        Repository model = RepositoryImpl.getInstance();
+        RepositoryInterface model = new Repository();
         Controlling controller = new Controller(view, model);
         Scanner scanner = new Scanner(System.in);
         long idNews;

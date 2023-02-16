@@ -1,8 +1,8 @@
 import com.mjc.school.controller.entity.NewsDTO;
 import com.mjc.school.controller.implementation.View;
 import com.mjc.school.controller.interfaces.Viewing;
-import com.mjc.school.repository.interfaces.Repository;
-import com.mjc.school.repository.implementation.RepositoryImpl;
+import com.mjc.school.repository.implementation.Repository;
+import com.mjc.school.repository.source.DataSource;
 import com.mjc.school.repository.entity.News;
 import com.mjc.school.service.implementation.Controller;
 import com.mjc.school.service.interfaces.Controlling;
@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 public class ControllerTest {
     static Viewing viewing;
-    static Repository model;
+    static Repository repository;
     static List<News> actual;
     static Controlling controller;
     NewsDTO newsDTO = new NewsDTO("Title", "Content", 2);
@@ -26,9 +26,9 @@ public class ControllerTest {
     @BeforeAll
     public static void startDataBase() {
         viewing = new View();
-        model = RepositoryImpl.getInstance();
-        actual = model.getDataSource();
-        controller = new Controller(viewing, model);
+        repository = new Repository();
+        actual = DataSource.getDataSource();
+        controller = new Controller(viewing, repository);
     }
 
     @Test
