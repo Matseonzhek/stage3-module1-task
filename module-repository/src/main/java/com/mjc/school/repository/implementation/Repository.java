@@ -6,7 +6,7 @@ import com.mjc.school.repository.source.DataSource;
 
 import java.util.List;
 
-public class Repository implements RepositoryInterface<News> {
+public class Repository implements RepositoryInterface {
 
     private final DataSource dataSource;
 
@@ -15,8 +15,8 @@ public class Repository implements RepositoryInterface<News> {
     }
 
     @Override
-    public News create(News entity) {
-        return dataSource.addNews(entity);
+    public News create(News news) {
+        return dataSource.addNews(news);
     }
 
     @Override

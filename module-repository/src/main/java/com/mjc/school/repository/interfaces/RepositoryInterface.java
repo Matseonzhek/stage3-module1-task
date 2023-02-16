@@ -1,17 +1,19 @@
 package com.mjc.school.repository.interfaces;
 
+import com.mjc.school.repository.entity.News;
+
 import java.util.List;
 
-public interface RepositoryInterface<T> {
-    T create(T entity);
+public interface RepositoryInterface {
+    News create(News news);
 
-    List<T> readAll();
+    List<News> readAll();
 
-    T update(T entity);
+    News update(News entity);
 
     Boolean delete(Long id);
 
-    T readById(Long id);
+    News readById(Long id);
 
 
 }
