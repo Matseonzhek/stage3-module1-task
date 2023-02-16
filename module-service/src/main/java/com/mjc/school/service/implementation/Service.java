@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Controller implements Controlling {
+public class Service implements Controlling {
 
     private final Viewing view;
-    private final RepositoryInterface model;
+    private final RepositoryInterface repository;
 
-    public Controller(Viewing view, RepositoryInterface model) {
+    public Service(Viewing view, RepositoryInterface repository) {
         this.view = view;
-        this.model = model;
+        this.repository = repository;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Controller implements Controlling {
         }
         validate(newsDTO);
         NewsModel newsModel = NewsMapper.INSTANCE.newsDTOToNews(newsDTO);
-        model.create(newsModel);
+        repository.create(newsModel);
         return newsDTO;
     }
 
@@ -38,7 +38,7 @@ public class Controller implements Controlling {
         if (id == null) {
             return null;
         }
-        NewsModel newsModel = (NewsModel) model.readById(id);
+        NewsModel newsModel = (NewsModel) repository.readById(id);
         NewsDTO newsDTO = view.getNewsDTO(scanner);
         validate(newsDTO);
         newsModel.setTitle(newsDTO.getTitle());
@@ -48,24 +48,24 @@ public class Controller implements Controlling {
     }
 
     @Override
-    public NewsDTO getNewsById(Long id) {
+    public NewsDTO readBy(Long id) {
         if (id == null) {
             return null;
         }
-        return NewsMapper.INSTANCE.newsToNewsDTO((NewsModel) model.readById(id));
+        return NewsMapper.INSTANCE.newsToNewsDTO((NewsModel) repository.readById(id));
     }
 
     @Override
-    public boolean deleteNews(Long id) {
+    public Boolean deleteNews(Long id) {
         if (id == null) {
             return false;
         }
-        return model.delete(id);
+        return repository.delete(id);
     }
 
     @Override
-    public List<NewsDTO> getAllNews() {
-        List<NewsModel> newsModelList = model.readAll();
+    public List<NewsDTO> readAll() {
+        List<NewsModel> newsModelList = repository.readAll();
         List<NewsDTO> newsDTOList = new ArrayList<>();
         for (NewsModel element : newsModelList) {
             NewsDTO newsDTO = NewsMapper.INSTANCE.newsToNewsDTO(element);

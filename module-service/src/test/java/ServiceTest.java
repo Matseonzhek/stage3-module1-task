@@ -4,7 +4,7 @@ import com.mjc.school.controller.interfaces.Viewing;
 import com.mjc.school.repository.entity.NewsModel;
 import com.mjc.school.repository.implementation.Repository;
 import com.mjc.school.repository.source.DataSource;
-import com.mjc.school.service.implementation.Controller;
+import com.mjc.school.service.implementation.Service;
 import com.mjc.school.service.interfaces.Controlling;
 import com.mjc.school.service.interfaces.NewsMapper;
 import com.mjc.school.service.exceptions.NewsValidationException;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ControllerTest {
+public class ServiceTest {
     static Viewing viewing;
     static Repository repository;
     static List<NewsModel> actual;
@@ -28,12 +28,12 @@ public class ControllerTest {
         viewing = new View();
         repository = new Repository();
         actual = DataSource.getDataSource();
-        controller = new Controller(viewing, repository);
+        controller = new Service(viewing, repository);
     }
 
     @Test
     void testGetAllNews() {
-        List<NewsDTO> newsDTOS = controller.getAllNews();
+        List<NewsDTO> newsDTOS = controller.readAll();
         List<NewsModel> expected = new ArrayList<>();
         for (NewsDTO element : newsDTOS) {
             NewsModel newsModel = NewsMapper.INSTANCE.newsDTOToNews(element);
@@ -54,7 +54,7 @@ public class ControllerTest {
     @Test
     void getNewsById() {
         long id = 1;
-        NewsDTO newsDTO = controller.getNewsById(id);
+        NewsDTO newsDTO = controller.readBy(id);
         Assertions.assertEquals("Orcas in Russia",newsDTO.getTitle());
     }
 

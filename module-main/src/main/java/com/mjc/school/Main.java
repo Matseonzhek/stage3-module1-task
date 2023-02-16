@@ -5,8 +5,7 @@ import com.mjc.school.controller.implementation.View;
 import com.mjc.school.controller.interfaces.Viewing;
 import com.mjc.school.repository.implementation.Repository;
 import com.mjc.school.repository.interfaces.RepositoryInterface;
-import com.mjc.school.repository.source.DataSource;
-import com.mjc.school.service.implementation.Controller;
+import com.mjc.school.service.implementation.Service;
 import com.mjc.school.service.interfaces.Controlling;
 import com.mjc.school.service.exceptions.NewsValidationException;
 
@@ -16,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         Viewing view = new View();
         RepositoryInterface model = new Repository();
-        Controlling controller = new Controller(view, model);
+        Controlling controller = new Service(view, model);
         Scanner scanner = new Scanner(System.in);
         long idNews;
         NewsDTO newsDTO;
@@ -32,10 +31,10 @@ public class Main {
                 System.out.println("0 - Exit");
 
                 switch (scanner.nextLine()) {
-                    case "1" -> view.printListOfNewsDTO(controller.getAllNews());
+                    case "1" -> view.printListOfNewsDTO(controller.readAll());
                     case "2" -> {
                         idNews = view.getId(scanner);
-                        view.printNewsDTO(controller.getNewsById(idNews));
+                        view.printNewsDTO(controller.readBy(idNews));
                     }
                     case "3" -> {
                         newsDTO = view.getNewsDTO(scanner);
