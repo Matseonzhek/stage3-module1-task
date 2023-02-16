@@ -1,6 +1,6 @@
 package com.mjc.school.repository.implementation;
 
-import com.mjc.school.repository.entity.News;
+import com.mjc.school.repository.entity.NewsModel;
 import com.mjc.school.repository.interfaces.RepositoryInterface;
 import com.mjc.school.repository.source.DataSource;
 
@@ -15,17 +15,17 @@ public class Repository implements RepositoryInterface {
     }
 
     @Override
-    public News create(News news) {
-        return dataSource.addNews(news);
+    public NewsModel create(NewsModel newsModel) {
+        return dataSource.addNews(newsModel);
     }
 
     @Override
-    public List<News> readAll() {
+    public List<NewsModel> readAll() {
         return dataSource.readAllNews();
     }
 
     @Override
-    public News update(News entity) {
+    public NewsModel update(NewsModel entity) {
         return dataSource.addNews(entity);
     }
 
@@ -35,7 +35,7 @@ public class Repository implements RepositoryInterface {
     }
 
     @Override
-    public News readById(Long id) {
+    public NewsModel readById(Long id) {
         return dataSource
                 .readAllNews()
                 .stream()

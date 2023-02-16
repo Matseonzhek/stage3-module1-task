@@ -2,8 +2,8 @@ package com.mjc.school.service.implementation;
 
 import com.mjc.school.controller.entity.NewsDTO;
 import com.mjc.school.controller.interfaces.Viewing;
+import com.mjc.school.repository.entity.NewsModel;
 import com.mjc.school.repository.interfaces.RepositoryInterface;
-import com.mjc.school.repository.entity.News;
 import com.mjc.school.service.interfaces.Controlling;
 import com.mjc.school.service.interfaces.NewsMapper;
 import com.mjc.school.service.exceptions.NewsValidationException;
@@ -28,8 +28,8 @@ public class Controller implements Controlling {
             return null;
         }
         validate(newsDTO);
-        News news = NewsMapper.INSTANCE.newsDTOToNews(newsDTO);
-        model.create(news);
+        NewsModel newsModel = NewsMapper.INSTANCE.newsDTOToNews(newsDTO);
+        model.create(newsModel);
         return newsDTO;
     }
 
@@ -38,12 +38,12 @@ public class Controller implements Controlling {
         if (id == null) {
             return null;
         }
-        News news = (News) model.readById(id);
+        NewsModel newsModel = (NewsModel) model.readById(id);
         NewsDTO newsDTO = view.getNewsDTO(scanner);
         validate(newsDTO);
-        news.setTitle(newsDTO.getTitle());
-        news.setContent(newsDTO.getContent());
-        news.setAuthorId(newsDTO.getAuthorId());
+        newsModel.setTitle(newsDTO.getTitle());
+        newsModel.setContent(newsDTO.getContent());
+        newsModel.setAuthorId(newsDTO.getAuthorId());
         return newsDTO;
     }
 
@@ -52,7 +52,7 @@ public class Controller implements Controlling {
         if (id == null) {
             return null;
         }
-        return NewsMapper.INSTANCE.newsToNewsDTO((News) model.readById(id));
+        return NewsMapper.INSTANCE.newsToNewsDTO((NewsModel) model.readById(id));
     }
 
     @Override
@@ -65,9 +65,9 @@ public class Controller implements Controlling {
 
     @Override
     public List<NewsDTO> getAllNews() {
-        List<News> newsList = model.readAll();
+        List<NewsModel> newsModelList = model.readAll();
         List<NewsDTO> newsDTOList = new ArrayList<>();
-        for (News element : newsList) {
+        for (NewsModel element : newsModelList) {
             NewsDTO newsDTO = NewsMapper.INSTANCE.newsToNewsDTO(element);
             newsDTOList.add(newsDTO);
         }

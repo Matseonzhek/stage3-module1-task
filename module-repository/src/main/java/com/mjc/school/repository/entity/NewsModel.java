@@ -3,7 +3,7 @@ package com.mjc.school.repository.entity;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class News {
+public class NewsModel {
     private long id;
     private String title;
     private String content;
@@ -11,10 +11,10 @@ public class News {
     private LocalDateTime lastUpdateDate;
     private long authorId;
 
-    public News() {
+    public NewsModel() {
     }
 
-    public News(long id, String title, String content, LocalDateTime createDate, LocalDateTime lastUpdateDate, long authorId) {
+    public NewsModel(long id, String title, String content, LocalDateTime createDate, LocalDateTime lastUpdateDate, long authorId) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -75,8 +75,8 @@ public class News {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        News news = (News) o;
-        return id == news.id && authorId == news.authorId && title.equals(news.title) && content.equals(news.content) && createDate.equals(news.createDate) && lastUpdateDate.equals(news.lastUpdateDate);
+        NewsModel newsModel = (NewsModel) o;
+        return id == newsModel.id && authorId == newsModel.authorId && title.equals(newsModel.title) && content.equals(newsModel.content) && createDate.equals(newsModel.createDate) && lastUpdateDate.equals(newsModel.lastUpdateDate);
     }
 
     @Override

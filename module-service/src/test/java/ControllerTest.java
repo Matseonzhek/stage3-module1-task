@@ -1,9 +1,9 @@
 import com.mjc.school.controller.entity.NewsDTO;
 import com.mjc.school.controller.implementation.View;
 import com.mjc.school.controller.interfaces.Viewing;
+import com.mjc.school.repository.entity.NewsModel;
 import com.mjc.school.repository.implementation.Repository;
 import com.mjc.school.repository.source.DataSource;
-import com.mjc.school.repository.entity.News;
 import com.mjc.school.service.implementation.Controller;
 import com.mjc.school.service.interfaces.Controlling;
 import com.mjc.school.service.interfaces.NewsMapper;
@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class ControllerTest {
     static Viewing viewing;
     static Repository repository;
-    static List<News> actual;
+    static List<NewsModel> actual;
     static Controlling controller;
     NewsDTO newsDTO = new NewsDTO("Title", "Content", 2);
 
@@ -34,10 +34,10 @@ public class ControllerTest {
     @Test
     void testGetAllNews() {
         List<NewsDTO> newsDTOS = controller.getAllNews();
-        List<News> expected = new ArrayList<>();
+        List<NewsModel> expected = new ArrayList<>();
         for (NewsDTO element : newsDTOS) {
-            News news = NewsMapper.INSTANCE.newsDTOToNews(element);
-            expected.add(news);
+            NewsModel newsModel = NewsMapper.INSTANCE.newsDTOToNews(element);
+            expected.add(newsModel);
         }
         Assertions.assertEquals(expected.size(), actual.size());
     }
