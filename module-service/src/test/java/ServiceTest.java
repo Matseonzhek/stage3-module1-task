@@ -20,7 +20,7 @@ public class ServiceTest {
     static Viewing viewing;
     static Repository repository;
     static List<NewsModel> actual;
-    static Controlling controller;
+    static Service controller;
     NewsDTO newsDTO = new NewsDTO("Title", "Content", 2);
 
     @BeforeAll
@@ -45,7 +45,7 @@ public class ServiceTest {
     @Test
     void createNews() throws NewsValidationException {
         int dataBaseSizeBeforeSave = actual.size();
-        controller.createNews(newsDTO, new Scanner(System.in));
+        controller.create(newsDTO, new Scanner(System.in));
         int dataBaseSizeAfterSave = actual.size();
         Assertions.assertEquals(1, (dataBaseSizeAfterSave - dataBaseSizeBeforeSave));
     }

@@ -6,12 +6,13 @@ import com.mjc.school.service.exceptions.NewsValidationException;
 import java.util.List;
 import java.util.Scanner;
 
-public interface Controlling {
-    NewsDTO createNews(NewsDTO newsDTO, Scanner scanner) throws NewsValidationException;
-    NewsDTO update(Long id, Scanner scanner) throws NewsValidationException;
-    NewsDTO readBy(Long id);
-    Boolean deleteNews(Long id);
-    List<NewsDTO> readAll();
+public interface Controlling<T> {
 
-    void validate(NewsDTO newsDTO) throws NewsValidationException;
+    T create(NewsDTO newsDTO, Scanner scanner) throws NewsValidationException;
+    T update(Long id, Scanner scanner) throws NewsValidationException;
+    T readBy(Long id);
+    Boolean deleteNews(Long id);
+    List<T> readAll();
+
+
 }

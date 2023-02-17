@@ -6,7 +6,7 @@ import com.mjc.school.repository.source.DataSource;
 
 import java.util.List;
 
-public class Repository implements RepositoryInterface {
+public class Repository implements RepositoryInterface<NewsModel> {
 
     private final DataSource dataSource;
 

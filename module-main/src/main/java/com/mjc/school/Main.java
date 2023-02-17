@@ -14,8 +14,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Viewing view = new View();
-        RepositoryInterface model = new Repository();
-        Controlling controller = new Service(view, model);
+        Repository repository = new Repository();
+        Service controller = new Service(view, repository);
         Scanner scanner = new Scanner(System.in);
         long idNews;
         NewsDTO newsDTO;
@@ -38,7 +38,7 @@ public class Main {
                     }
                     case "3" -> {
                         newsDTO = view.getNewsDTO(scanner);
-                        controller.createNews(newsDTO, scanner);
+                        controller.create(newsDTO, scanner);
                     }
                     case "4" -> {
                         idNews = view.getId(scanner);
