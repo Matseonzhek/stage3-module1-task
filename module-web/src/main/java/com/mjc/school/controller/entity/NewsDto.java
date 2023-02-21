@@ -2,12 +2,12 @@ package com.mjc.school.controller.entity;
 
 import java.util.Objects;
 
-public class NewsDTO {
+public class NewsDto {
     private String title;
     private String content;
     private long authorId;
 
-    public NewsDTO(String title, String content, long authorId) {
+    public NewsDto(String title, String content, long authorId) {
         this.title = title;
         this.content = content;
         this.authorId = authorId;
@@ -41,7 +41,7 @@ public class NewsDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NewsDTO newsDTO = (NewsDTO) o;
+        NewsDto newsDTO = (NewsDto) o;
         return authorId == newsDTO.authorId && title.equals(newsDTO.title) && content.equals(newsDTO.content);
     }
 

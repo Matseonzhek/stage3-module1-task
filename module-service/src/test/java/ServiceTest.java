@@ -1,11 +1,10 @@
-import com.mjc.school.controller.entity.NewsDTO;
+import com.mjc.school.controller.entity.NewsDto;
 import com.mjc.school.controller.implementation.View;
 import com.mjc.school.controller.interfaces.Viewing;
 import com.mjc.school.repository.entity.NewsModel;
 import com.mjc.school.repository.implementation.Repository;
 import com.mjc.school.repository.source.DataSource;
 import com.mjc.school.service.implementation.Service;
-import com.mjc.school.service.interfaces.Controlling;
 import com.mjc.school.service.interfaces.NewsMapper;
 import com.mjc.school.service.exceptions.NewsValidationException;
 import org.junit.jupiter.api.Assertions;
@@ -21,7 +20,7 @@ public class ServiceTest {
     static Repository repository;
     static List<NewsModel> actual;
     static Service controller;
-    NewsDTO newsDTO = new NewsDTO("Title", "Content", 2);
+    NewsDto newsDTO = new NewsDto("Title", "Content", 2);
 
     @BeforeAll
     public static void startDataBase() {
@@ -33,9 +32,9 @@ public class ServiceTest {
 
     @Test
     void testGetAllNews() {
-        List<NewsDTO> newsDTOS = controller.readAll();
+        List<NewsDto> newsDtos = controller.readAll();
         List<NewsModel> expected = new ArrayList<>();
-        for (NewsDTO element : newsDTOS) {
+        for (NewsDto element : newsDtos) {
             NewsModel newsModel = NewsMapper.INSTANCE.newsDTOToNews(element);
             expected.add(newsModel);
         }
@@ -54,7 +53,7 @@ public class ServiceTest {
     @Test
     void getNewsById() {
         long id = 1;
-        NewsDTO newsDTO = controller.readBy(id);
+        NewsDto newsDTO = controller.readBy(id);
         Assertions.assertEquals("Orcas in Russia",newsDTO.getTitle());
     }
 

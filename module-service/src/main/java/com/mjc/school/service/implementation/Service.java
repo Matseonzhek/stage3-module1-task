@@ -1,22 +1,23 @@
 package com.mjc.school.service.implementation;
 
-import com.mjc.school.controller.entity.NewsDTO;
+import com.mjc.school.controller.entity.NewsDto;
 import com.mjc.school.controller.interfaces.Viewing;
 import com.mjc.school.repository.entity.NewsModel;
 import com.mjc.school.repository.implementation.Repository;
+import com.mjc.school.repository.interfaces.RepositoryInterface;
 import com.mjc.school.service.exceptions.NewsValidationException;
 import com.mjc.school.service.interfaces.Controlling;
 import com.mjc.school.service.interfaces.NewsMapper;
-import com.mjc.school.service.interfaces.Validating;
+import com.mjc.school.service.interfaces.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Service implements Controlling<NewsDTO>, Validating {
+public class Service implements Controlling<NewsDto>, Validator {
 
     private final Viewing view;
-    private final Repository repository;
+    private final RepositoryInterface<NewsModel> repository;
 
     public Service(Viewing view, Repository repository) {
         this.view = view;
@@ -24,7 +25,7 @@ public class Service implements Controlling<NewsDTO>, Validating {
     }
 
     @Override
-    public NewsDTO create(NewsDTO newsDTO, Scanner scanner) throws NewsValidationException {
+    public NewsDto create(NewsDto newsDTO, Scanner scanner) throws NewsValidationException {
         if (newsDTO == null) {
             return null;
         }
@@ -35,12 +36,12 @@ public class Service implements Controlling<NewsDTO>, Validating {
     }
 
     @Override
-    public NewsDTO update(Long id, Scanner scanner) throws NewsValidationException {
+    public NewsDto update(Long id, Scanner scanner) throws NewsValidationException {
         if (id == null) {
             return null;
         }
         NewsModel newsModel = repository.readById(id);
-        NewsDTO newsDTO = view.getNewsDTO(scanner);
+        NewsDto newsDTO = view.getNewsDTO(scanner);
         validate(newsDTO);
         newsModel.setTitle(newsDTO.getTitle());
         newsModel.setContent(newsDTO.getContent());
@@ -49,7 +50,7 @@ public class Service implements Controlling<NewsDTO>, Validating {
     }
 
     @Override
-    public NewsDTO readBy(Long id) {
+    public NewsDto readBy(Long id) {
         if (id == null) {
             return null;
         }
@@ -65,18 +66,18 @@ public class Service implements Controlling<NewsDTO>, Validating {
     }
 
     @Override
-    public List<NewsDTO> readAll() {
+    public List<NewsDto> readAll() {
         List<NewsModel> newsModelList = repository.readAll();
-        List<NewsDTO> newsDTOList = new ArrayList<>();
+        List<NewsDto> newsDtoList = new ArrayList<>();
         for (NewsModel element : newsModelList) {
-            NewsDTO newsDTO = NewsMapper.INSTANCE.newsToNewsDTO(element);
-            newsDTOList.add(newsDTO);
+            NewsDto newsDTO = NewsMapper.INSTANCE.newsToNewsDTO(element);
+            newsDtoList.add(newsDTO);
         }
-        return newsDTOList;
+        return newsDtoList;
     }
 
     @Override
-    public void validate(NewsDTO newsDTO) throws NewsValidationException {
+    public void validate(NewsDto newsDTO) throws NewsValidationException {
         if (!(newsDTO.getTitle().length() >= 5 && newsDTO.getTitle().length() <= 30)) {
             throw new NewsValidationException("com.mjc.school.repository.entity.News was not updated, as length of the title is less of 5 or more than 30." + newsDTO.getTitle() + ": " + newsDTO.getTitle().length());
         }

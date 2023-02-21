@@ -1,13 +1,11 @@
 package com.mjc.school;
 
-import com.mjc.school.controller.entity.NewsDTO;
+import com.mjc.school.controller.entity.NewsDto;
 import com.mjc.school.controller.implementation.View;
 import com.mjc.school.controller.interfaces.Viewing;
 import com.mjc.school.repository.implementation.Repository;
-import com.mjc.school.repository.interfaces.RepositoryInterface;
-import com.mjc.school.service.implementation.Service;
-import com.mjc.school.service.interfaces.Controlling;
 import com.mjc.school.service.exceptions.NewsValidationException;
+import com.mjc.school.service.implementation.Service;
 
 import java.util.Scanner;
 
@@ -18,7 +16,7 @@ public class Main {
         Service controller = new Service(view, repository);
         Scanner scanner = new Scanner(System.in);
         long idNews;
-        NewsDTO newsDTO;
+        NewsDto newsDTO;
 
         while (true) {
             try {

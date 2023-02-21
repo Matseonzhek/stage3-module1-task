@@ -1,13 +1,13 @@
 package com.mjc.school.controller.interfaces;
 
-import com.mjc.school.controller.entity.NewsDTO;
+import com.mjc.school.controller.entity.NewsDto;
 
 import java.util.List;
 import java.util.Scanner;
 
 public interface Viewing{
-    NewsDTO getNewsDTO(Scanner scanner);
+    NewsDto getNewsDTO(Scanner scanner);
     long getId(Scanner scanner);
-    void printListOfNewsDTO(List<NewsDTO> newsDTOList);
-    void printNewsDTO(NewsDTO newsById);
+    void printListOfNewsDTO(List<NewsDto> newsDtoList);
+    void printNewsDTO(NewsDto newsById);
 }

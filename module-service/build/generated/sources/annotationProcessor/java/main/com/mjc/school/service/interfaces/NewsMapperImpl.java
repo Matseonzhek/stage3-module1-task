@@ -1,6 +1,6 @@
 package com.mjc.school.service.interfaces;
 
-import com.mjc.school.controller.entity.NewsDTO;
+import com.mjc.school.controller.entity.NewsDto;
 import com.mjc.school.repository.entity.NewsModel;
 import javax.annotation.processing.Generated;
 
@@ -12,7 +12,7 @@ import javax.annotation.processing.Generated;
 public class NewsMapperImpl implements NewsMapper {
 
     @Override
-    public NewsDTO newsToNewsDTO(NewsModel newsModel) {
+    public NewsDto newsToNewsDTO(NewsModel newsModel) {
         if ( newsModel == null ) {
             return null;
         }
@@ -25,13 +25,13 @@ public class NewsMapperImpl implements NewsMapper {
         content = newsModel.getContent();
         authorId = newsModel.getAuthorId();
 
-        NewsDTO newsDTO = new NewsDTO( title, content, authorId );
+        NewsDto newsDTO = new NewsDto( title, content, authorId );
 
         return newsDTO;
     }
 
     @Override
-    public NewsModel newsDTOToNews(NewsDTO newsDTO) {
+    public NewsModel newsDTOToNews(NewsDto newsDTO) {
         if ( newsDTO == null ) {
             return null;
         }
