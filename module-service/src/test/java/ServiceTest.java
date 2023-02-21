@@ -2,22 +2,20 @@ import com.mjc.school.controller.entity.NewsDto;
 import com.mjc.school.controller.implementation.View;
 import com.mjc.school.controller.interfaces.Viewing;
 import com.mjc.school.repository.entity.NewsModel;
-import com.mjc.school.repository.implementation.Repository;
 import com.mjc.school.repository.source.DataSource;
+import com.mjc.school.service.exceptions.NewsValidationException;
 import com.mjc.school.service.implementation.Service;
 import com.mjc.school.service.interfaces.NewsMapper;
-import com.mjc.school.service.exceptions.NewsValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ServiceTest {
     static Viewing viewing;
-    static Repository repository;
+    static DataSource dataSource = DataSource.getInstance();
     static List<NewsModel> actual;
     static Service controller;
     NewsDto newsDTO = new NewsDto("Title", "Content", 2);
@@ -25,9 +23,8 @@ public class ServiceTest {
     @BeforeAll
     public static void startDataBase() {
         viewing = new View();
-        repository = new Repository();
-        actual = DataSource.getDataSource();
-        controller = new Service(viewing, repository);
+        actual = dataSource.readAllNews();
+        controller = new Service(viewing);
     }
 
     @Test
@@ -44,7 +41,7 @@ public class ServiceTest {
     @Test
     void createNews() throws NewsValidationException {
         int dataBaseSizeBeforeSave = actual.size();
-        controller.create(newsDTO, new Scanner(System.in));
+        controller.create(newsDTO);
         int dataBaseSizeAfterSave = actual.size();
         Assertions.assertEquals(1, (dataBaseSizeAfterSave - dataBaseSizeBeforeSave));
     }
@@ -54,7 +51,7 @@ public class ServiceTest {
     void getNewsById() {
         long id = 1;
         NewsDto newsDTO = controller.readBy(id);
-        Assertions.assertEquals("Orcas in Russia",newsDTO.getTitle());
+        Assertions.assertEquals("Orcas in Russia", newsDTO.getTitle());
     }
 
 }

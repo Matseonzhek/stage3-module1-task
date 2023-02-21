@@ -12,8 +12,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Viewing view = new View();
-        Repository repository = new Repository();
-        Service controller = new Service(view, repository);
+        Service controller = new Service(view);
         Scanner scanner = new Scanner(System.in);
         long idNews;
         NewsDto newsDTO;
@@ -36,7 +35,7 @@ public class Main {
                     }
                     case "3" -> {
                         newsDTO = view.getNewsDTO(scanner);
-                        controller.create(newsDTO, scanner);
+                        controller.create(newsDTO);
                     }
                     case "4" -> {
                         idNews = view.getId(scanner);

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public interface Controlling<T> {
 
-    T create(NewsDto newsDTO, Scanner scanner) throws NewsValidationException;
+    T create(NewsDto newsDTO) throws NewsValidationException;
     T update(Long id, Scanner scanner) throws NewsValidationException;
     T readBy(Long id);
     Boolean deleteNews(Long id);
