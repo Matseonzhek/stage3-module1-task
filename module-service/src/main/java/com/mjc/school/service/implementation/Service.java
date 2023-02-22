@@ -1,7 +1,6 @@
 package com.mjc.school.service.implementation;
 
 import com.mjc.school.controller.entity.NewsDto;
-import com.mjc.school.controller.interfaces.Viewing;
 import com.mjc.school.repository.entity.NewsModel;
 import com.mjc.school.repository.implementation.Repository;
 import com.mjc.school.repository.interfaces.RepositoryInterface;
@@ -12,16 +11,13 @@ import com.mjc.school.service.interfaces.NewsMapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Service implements Controlling<NewsDto> {
 
-    private final Viewing view;
     private final Validator validator = new Validator();
     private final RepositoryInterface<NewsModel> repository = new Repository();
 
-    public Service(Viewing view) {
-        this.view = view;
+    public Service() {
     }
 
     @Override
@@ -36,16 +32,10 @@ public class Service implements Controlling<NewsDto> {
     }
 
     @Override
-    public NewsDto update(Long id, Scanner scanner) throws NewsValidationException {
-        if (id == null) {
-            return null;
-        }
-        NewsModel newsModel = repository.readById(id);
-        NewsDto newsDTO = view.getNewsDTO(scanner);
+    public NewsDto update(NewsDto newsDTO) throws NewsValidationException {
         validator.validate(newsDTO);
-        newsModel.setTitle(newsDTO.getTitle());
-        newsModel.setContent(newsDTO.getContent());
-        newsModel.setAuthorId(newsDTO.getAuthorId());
+        NewsModel newsModel = NewsMapper.INSTANCE.newsDTOToNews(newsDTO);
+        repository.update(newsModel);
         return newsDTO;
     }
 

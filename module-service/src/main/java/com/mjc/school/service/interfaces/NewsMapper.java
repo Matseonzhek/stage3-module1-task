@@ -13,7 +13,6 @@ public interface NewsMapper {
 
     NewsDto newsToNewsDTO(NewsModel newsModel);
 
-    @Mapping(target = "id", ignore = true)
     @Mapping(target = "createDate",ignore = true)
     @Mapping(target = "lastUpdateDate",ignore = true)
     NewsModel newsDTOToNews (NewsDto newsDTO);

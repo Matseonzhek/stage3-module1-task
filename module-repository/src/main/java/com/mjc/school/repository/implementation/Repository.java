@@ -11,7 +11,7 @@ public class Repository implements RepositoryInterface<NewsModel> {
     private final DataSource dataSource;
 
     public Repository() {
-        this.dataSource =  DataSource.getInstance();
+        this.dataSource = DataSource.getInstance();
     }
 
     @Override
@@ -26,7 +26,12 @@ public class Repository implements RepositoryInterface<NewsModel> {
 
     @Override
     public NewsModel update(NewsModel entity) {
-        return dataSource.addNews(entity);
+        long id = entity.getId();
+        NewsModel updatedModel = readById(id);
+        updatedModel.setTitle(entity.getTitle());
+        updatedModel.setContent(entity.getContent());
+        updatedModel.setAuthorId(entity.getAuthorId());
+        return dataSource.updateNews(id, updatedModel);
     }
 
     @Override
@@ -39,7 +44,7 @@ public class Repository implements RepositoryInterface<NewsModel> {
         return dataSource
                 .readAllNews()
                 .stream()
-                .filter(news -> news.getId()==id)
+                .filter(news -> news.getId() == id)
                 .findFirst().orElseThrow(() -> new IllegalArgumentException("No data found"));
     }
 }

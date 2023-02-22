@@ -3,6 +3,7 @@ package com.mjc.school.controller.entity;
 import java.util.Objects;
 
 public class NewsDto {
+    private Long id;
     private String title;
     private String content;
     private long authorId;
@@ -11,6 +12,24 @@ public class NewsDto {
         this.title = title;
         this.content = content;
         this.authorId = authorId;
+    }
+
+    public NewsDto(Long id, String title, String content, long authorId) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.authorId = authorId;
+    }
+
+    public NewsDto() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {

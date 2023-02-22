@@ -6,7 +6,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-21T22:39:07+0400",
+    date = "2023-02-22T20:33:00+0400",
     comments = "version: 1.5.3.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.4.2.jar, environment: Java 17.0.1 (Oracle Corporation)"
 )
 public class NewsMapperImpl implements NewsMapper {
@@ -17,15 +17,12 @@ public class NewsMapperImpl implements NewsMapper {
             return null;
         }
 
-        String title = null;
-        String content = null;
-        long authorId = 0L;
+        NewsDto newsDto = new NewsDto();
 
-        title = newsModel.getTitle();
-        content = newsModel.getContent();
-        authorId = newsModel.getAuthorId();
-
-        NewsDto newsDto = new NewsDto( title, content, authorId );
+        newsDto.setId( newsModel.getId() );
+        newsDto.setTitle( newsModel.getTitle() );
+        newsDto.setContent( newsModel.getContent() );
+        newsDto.setAuthorId( newsModel.getAuthorId() );
 
         return newsDto;
     }
@@ -38,6 +35,9 @@ public class NewsMapperImpl implements NewsMapper {
 
         NewsModel newsModel = new NewsModel();
 
+        if ( newsDTO.getId() != null ) {
+            newsModel.setId( newsDTO.getId() );
+        }
         newsModel.setTitle( newsDTO.getTitle() );
         newsModel.setContent( newsDTO.getContent() );
         newsModel.setAuthorId( newsDTO.getAuthorId() );

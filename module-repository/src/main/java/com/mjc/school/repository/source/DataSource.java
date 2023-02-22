@@ -61,8 +61,12 @@ public class DataSource {
         return newsModel;
     }
 
-    public static List<NewsModel> getDataSource() {
-        return dataSource;
-    }
+//    public static List<NewsModel> getDataSource() {
+//        return dataSource;
+//    }
 
+    public NewsModel updateNews(Long id, NewsModel model){
+        dataSource.set((int) (id-1),model);
+        return dataSource.get((int) (id-1));
+    }
 }

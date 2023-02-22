@@ -20,13 +20,13 @@ public class ServiceTest {
     static RepositoryInterface<NewsModel> repository;
     static List<NewsModel> actual;
     static Service controller;
-    NewsDto newsDTO = new NewsDto("Title", "Content", 2);
+    NewsDto newsDTO = new NewsDto(5L, "Title", "Content", 2);
 
     @BeforeAll
     public static void startDataBase() {
         viewing = new View();
         actual = dataSource.readAllNews();
-        controller = new Service(viewing);
+        controller = new Service();
     }
 
     @Test
@@ -54,6 +54,14 @@ public class ServiceTest {
         long id = 1;
         NewsDto newsDTO = controller.readBy(id);
         Assertions.assertEquals("Orcas in Russia", newsDTO.getTitle());
+    }
+
+    @Test
+    void update() throws NewsValidationException {
+        long id = 5;
+        controller.update(newsDTO);
+        NewsModel newsModelUpdated = actual.get((int) (id - 1));
+        Assertions.assertEquals(newsDTO.getTitle(), newsModelUpdated.getTitle());
     }
 
 }

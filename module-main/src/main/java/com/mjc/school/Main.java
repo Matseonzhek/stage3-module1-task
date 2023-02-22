@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Viewing view = new View();
-        Service controller = new Service(view);
+        Service controller = new Service();
         Scanner scanner = new Scanner(System.in);
         long idNews;
         NewsDto newsDTO;
@@ -38,8 +38,8 @@ public class Main {
                     }
                     case "4" -> {
                         idNews = view.getId(scanner);
-                        controller.update(idNews, scanner);
-
+                        newsDTO = view.updateNewsDto(idNews, scanner);
+                        controller.update(newsDTO);
                     }
                     case "5" -> {
                         idNews = view.getId(scanner);
