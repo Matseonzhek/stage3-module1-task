@@ -17,12 +17,11 @@ import java.util.Scanner;
 public class Service implements Controlling<NewsDto> {
 
     private final Viewing view;
-    private final Validator validator = Validator.getValidatorInstance();
-    private final RepositoryInterface<NewsModel> repository;
+    private final Validator validator = new Validator();
+    private final RepositoryInterface<NewsModel> repository = new Repository();
 
     public Service(Viewing view) {
         this.view = view;
-        this.repository = new Repository();
     }
 
     @Override

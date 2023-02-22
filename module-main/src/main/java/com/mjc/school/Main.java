@@ -3,7 +3,6 @@ package com.mjc.school;
 import com.mjc.school.controller.entity.NewsDto;
 import com.mjc.school.controller.implementation.View;
 import com.mjc.school.controller.interfaces.Viewing;
-import com.mjc.school.repository.implementation.Repository;
 import com.mjc.school.service.exceptions.NewsValidationException;
 import com.mjc.school.service.implementation.Service;
 

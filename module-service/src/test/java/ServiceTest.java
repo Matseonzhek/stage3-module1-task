@@ -2,6 +2,7 @@ import com.mjc.school.controller.entity.NewsDto;
 import com.mjc.school.controller.implementation.View;
 import com.mjc.school.controller.interfaces.Viewing;
 import com.mjc.school.repository.entity.NewsModel;
+import com.mjc.school.repository.interfaces.RepositoryInterface;
 import com.mjc.school.repository.source.DataSource;
 import com.mjc.school.service.exceptions.NewsValidationException;
 import com.mjc.school.service.implementation.Service;
@@ -16,6 +17,7 @@ import java.util.List;
 public class ServiceTest {
     static Viewing viewing;
     static DataSource dataSource = DataSource.getInstance();
+    static RepositoryInterface<NewsModel> repository;
     static List<NewsModel> actual;
     static Service controller;
     NewsDto newsDTO = new NewsDto("Title", "Content", 2);

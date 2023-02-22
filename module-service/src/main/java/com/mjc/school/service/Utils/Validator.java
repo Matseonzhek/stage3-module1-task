@@ -7,7 +7,7 @@ public class Validator {
 
     private static Validator validatorInstance;
 
-    private Validator() {
+    public Validator() {
     }
 
     public static Validator getValidatorInstance() {
