@@ -2,7 +2,6 @@ package com.mjc.school;
 
 import com.mjc.school.controller.implementation.NewsController;
 import com.mjc.school.service.dto.NewsDto;
-import com.mjc.school.service.exceptions.NewsValidationException;
 
 import java.util.Scanner;
 
@@ -21,7 +20,7 @@ public class Main {
                 System.out.println("2 - Get news by id");
                 System.out.println("3 - Create news");
                 System.out.println("4 - Update news");
-                System.out.println("5 - Remove new by id");
+                System.out.println("5 - Remove news by id");
                 System.out.println("0 - Exit");
 
                 switch (scanner.nextLine()) {
@@ -50,7 +49,7 @@ public class Main {
                         System.out.println("Command not found");
                     }
                 }
-            } catch (RuntimeException | NewsValidationException e) {
+            } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
             }
         }

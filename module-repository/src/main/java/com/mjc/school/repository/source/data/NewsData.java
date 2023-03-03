@@ -1,6 +1,6 @@
 package com.mjc.school.repository.source.data;
 
-import com.mjc.school.repository.Utils.Utils;
+import com.mjc.school.repository.utils.Utils;
 import com.mjc.school.repository.entity.NewsModel;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 import com.mjc.school.repository.entity.NewsModel;
 import com.mjc.school.repository.source.DataSource;
 import com.mjc.school.service.dto.NewsDto;
-import com.mjc.school.service.exceptions.NewsValidationException;
+import com.mjc.school.service.exceptions.ValidationException;
 import com.mjc.school.service.implementation.NewsService;
 import com.mjc.school.service.interfaces.NewsMapper;
 import org.junit.jupiter.api.Assertions;
@@ -14,18 +14,18 @@ import java.util.List;
 public class NewsServiceTest {
     static DataSource dataSource = DataSource.getInstance();
     static List<NewsModel> actual;
-    static NewsService controller;
+    static NewsService newsService;
     NewsDto newsDTO = new NewsDto(5L, "Title", "Content", 2);
 
     @BeforeAll
     public static void startDataBase() {
         actual = dataSource.getAllNews();
-        controller = new NewsService();
+        newsService = new NewsService();
     }
 
     @Test
     void testGetAllNews() {
-        List<NewsDto> newsDtos = controller.readAll();
+        List<NewsDto> newsDtos = newsService.readAll();
         List<NewsModel> expected = new ArrayList<>();
         for (NewsDto element : newsDtos) {
             NewsModel newsModel = NewsMapper.INSTANCE.newsDTOToNews(element);
@@ -35,9 +35,9 @@ public class NewsServiceTest {
     }
 
     @Test
-    void createNews() throws NewsValidationException {
+    void createNews() throws ValidationException {
         int dataBaseSizeBeforeSave = actual.size();
-        controller.create(newsDTO);
+        newsService.create(newsDTO);
         int dataBaseSizeAfterSave = actual.size();
         Assertions.assertEquals(1, (dataBaseSizeAfterSave - dataBaseSizeBeforeSave));
     }
@@ -46,14 +46,14 @@ public class NewsServiceTest {
     @Test
     void getNewsById() {
         long id = 1;
-        NewsDto newsDTO = controller.readBy(id);
+        NewsDto newsDTO = newsService.readBy(id);
         Assertions.assertEquals("Orcas in Russia", newsDTO.getTitle());
     }
 
     @Test
-    void update() throws NewsValidationException {
+    void update() throws ValidationException {
         long id = 5;
-        controller.update(newsDTO);
+        newsService.update(newsDTO);
         NewsModel newsModelUpdated = actual.get((int) (id - 1));
         Assertions.assertEquals(newsDTO.getTitle(), newsModelUpdated.getTitle());
     }

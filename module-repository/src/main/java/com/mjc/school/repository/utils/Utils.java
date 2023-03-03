@@ -1,4 +1,4 @@
-package com.mjc.school.repository.Utils;
+package com.mjc.school.repository.utils;
 
 import com.mjc.school.repository.entity.AuthorModel;
 import com.mjc.school.repository.entity.NewsModel;

@@ -1,7 +1,7 @@
 package com.mjc.school.controller.implementation;
 
 import com.mjc.school.service.dto.NewsDto;
-import com.mjc.school.service.exceptions.NewsValidationException;
+import com.mjc.school.service.exceptions.ValidationException;
 import com.mjc.school.service.implementation.NewsService;
 import com.mjc.school.service.interfaces.Service;
 
@@ -20,11 +20,11 @@ public class NewsController {
         return newsService.readBy(id);
     }
 
-    public NewsDto create(NewsDto newsDto) throws NewsValidationException {
+    public NewsDto create(NewsDto newsDto) throws ValidationException {
         return newsService.create(newsDto);
     }
 
-    public NewsDto update(NewsDto newsDto) throws NewsValidationException {
+    public NewsDto update(NewsDto newsDto) throws ValidationException {
         return newsService.update(newsDto);
     }
 
