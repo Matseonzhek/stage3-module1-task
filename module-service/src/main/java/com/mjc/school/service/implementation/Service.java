@@ -2,8 +2,8 @@ package com.mjc.school.service.implementation;
 
 import com.mjc.school.controller.entity.NewsDto;
 import com.mjc.school.repository.entity.NewsModel;
-import com.mjc.school.repository.implementation.Repository;
-import com.mjc.school.repository.interfaces.RepositoryInterface;
+import com.mjc.school.repository.implementation.NewsRepository;
+import com.mjc.school.repository.interfaces.Repository;
 import com.mjc.school.service.Utils.Validator;
 import com.mjc.school.service.exceptions.NewsValidationException;
 import com.mjc.school.service.interfaces.Controlling;
@@ -15,7 +15,7 @@ import java.util.List;
 public class Service implements Controlling<NewsDto> {
 
     private final Validator validator = new Validator();
-    private final RepositoryInterface<NewsModel> repository = new Repository();
+    private final Repository<NewsModel> repository = new NewsRepository();
 
     public Service() {
     }
