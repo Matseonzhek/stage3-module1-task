@@ -1,6 +1,6 @@
 package com.mjc.school.service.Utils;
 
-import com.mjc.school.controller.entity.NewsDto;
+import com.mjc.school.service.dto.NewsDto;
 import com.mjc.school.service.exceptions.NewsValidationException;
 
 public class Validator {

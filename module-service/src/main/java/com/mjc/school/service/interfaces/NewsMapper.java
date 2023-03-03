@@ -1,6 +1,6 @@
 package com.mjc.school.service.interfaces;
 
-import com.mjc.school.controller.entity.NewsDto;
+import com.mjc.school.service.dto.NewsDto;
 import com.mjc.school.repository.entity.NewsModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

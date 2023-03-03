@@ -1,4 +1,4 @@
-package com.mjc.school.controller.entity;
+package com.mjc.school.service.dto;
 
 import java.util.Objects;
 

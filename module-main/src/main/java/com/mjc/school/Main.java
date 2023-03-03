@@ -1,17 +1,15 @@
 package com.mjc.school;
 
-import com.mjc.school.controller.entity.NewsDto;
-import com.mjc.school.controller.implementation.View;
-import com.mjc.school.controller.interfaces.Viewing;
+import com.mjc.school.controller.implementation.NewsController;
+import com.mjc.school.service.dto.NewsDto;
 import com.mjc.school.service.exceptions.NewsValidationException;
-import com.mjc.school.service.implementation.Service;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Viewing view = new View();
-        Service controller = new Service();
+        View view = new View();
+        NewsController newsController = new NewsController();
         Scanner scanner = new Scanner(System.in);
         long idNews;
         NewsDto newsDTO;
@@ -27,23 +25,23 @@ public class Main {
                 System.out.println("0 - Exit");
 
                 switch (scanner.nextLine()) {
-                    case "1" -> view.printListOfNewsDTO(controller.readAll());
+                    case "1" -> view.printListOfNewsDTO(newsController.readAll());
                     case "2" -> {
                         idNews = view.getId(scanner);
-                        view.printNewsDTO(controller.readBy(idNews));
+                        view.printNewsDTO(newsController.readById(idNews));
                     }
                     case "3" -> {
                         newsDTO = view.getNewsDTO(scanner);
-                        controller.create(newsDTO);
+                        newsController.create(newsDTO);
                     }
                     case "4" -> {
                         idNews = view.getId(scanner);
                         newsDTO = view.updateNewsDto(idNews, scanner);
-                        controller.update(newsDTO);
+                        newsController.update(newsDTO);
                     }
                     case "5" -> {
                         idNews = view.getId(scanner);
-                        controller.deleteNews(idNews);
+                        newsController.deleteById(idNews);
                     }
                     case "0" -> {
                         System.exit(0);

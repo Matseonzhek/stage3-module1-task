@@ -1,11 +1,8 @@
-import com.mjc.school.controller.entity.NewsDto;
-import com.mjc.school.controller.implementation.View;
-import com.mjc.school.controller.interfaces.Viewing;
 import com.mjc.school.repository.entity.NewsModel;
-import com.mjc.school.repository.interfaces.Repository;
 import com.mjc.school.repository.source.DataSource;
+import com.mjc.school.service.dto.NewsDto;
 import com.mjc.school.service.exceptions.NewsValidationException;
-import com.mjc.school.service.implementation.Service;
+import com.mjc.school.service.implementation.NewsService;
 import com.mjc.school.service.interfaces.NewsMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,19 +11,16 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceTest {
-    static Viewing viewing;
+public class NewsServiceTest {
     static DataSource dataSource = DataSource.getInstance();
-    static Repository<NewsModel> repository;
     static List<NewsModel> actual;
-    static Service controller;
+    static NewsService controller;
     NewsDto newsDTO = new NewsDto(5L, "Title", "Content", 2);
 
     @BeforeAll
     public static void startDataBase() {
-        viewing = new View();
         actual = dataSource.getAllNews();
-        controller = new Service();
+        controller = new NewsService();
     }
 
     @Test

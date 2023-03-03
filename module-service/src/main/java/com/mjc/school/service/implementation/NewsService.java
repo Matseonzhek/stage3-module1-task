@@ -1,23 +1,23 @@
 package com.mjc.school.service.implementation;
 
-import com.mjc.school.controller.entity.NewsDto;
 import com.mjc.school.repository.entity.NewsModel;
 import com.mjc.school.repository.implementation.NewsRepository;
 import com.mjc.school.repository.interfaces.Repository;
 import com.mjc.school.service.Utils.Validator;
+import com.mjc.school.service.dto.NewsDto;
 import com.mjc.school.service.exceptions.NewsValidationException;
-import com.mjc.school.service.interfaces.Controlling;
 import com.mjc.school.service.interfaces.NewsMapper;
+import com.mjc.school.service.interfaces.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Service implements Controlling<NewsDto> {
+public class NewsService implements Service<NewsDto> {
 
     private final Validator validator = new Validator();
     private final Repository<NewsModel> repository = new NewsRepository();
 
-    public Service() {
+    public NewsService() {
     }
 
     @Override
